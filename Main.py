@@ -3,7 +3,6 @@ from multiprocessing import Process, Semaphore
 
 
 class Philosopher(Process):
-
     def __init__(self, name, leftFork, rightFork):
         Process.__init__(self)
         self.name = name
@@ -26,7 +25,7 @@ class Philosopher(Process):
             self.leftFork.acquire()
             if self.rightFork.acquire(True):
                 print('%s is eating now. ' % self.name)
-                time.sleep(2)
+                time.sleep(1)
                 print('%s finishes eating and resting now. ' % self.name)
                 self.rightFork.release()
                 self.leftFork.release()
@@ -52,7 +51,7 @@ def main():
     for banqueter in guestlist:
         banqueter.start()
 
-    time.sleep(15)
+    time.sleep(5)
 
     # Zakończenie posiłku
     print("\nBanquet is finished")
